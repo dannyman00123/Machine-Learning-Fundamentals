@@ -1,0 +1,109 @@
+Tutorial 1 - Tech With Tim - https://www.youtube.com/watch?v=ujTCoH21GlA&list=PLzMcBGfZo4-mP7qA9cagf68V06sko5otr
+
+Install TensorFlow is not easy
+1070 is KUDA enabled and therefore can be ran off of the GPU instead of the CPU.
+CUDA 11.0.1.26
+
+Tutorial 2 - Linear regression ML model set up
+
+UCI Data Repository https://archive.ics.uci.edu/ml/datasets/Student+Performance
+
+-var Predict is whats known as a 'label'. In ML, a label is what you're trying to get.
+ A model may include multiple labels
+-We need to define two arrays: Our attributes is 1, and our labels are another.
+
+-When training an ML model, you cannot train your model on the same data as your test data
+-To combat this, sklearn.model_selection.train_test_split(x, y, test_size=0.1) SPLITS UP your data into test
+data slices. With this currently being set to 10% (0.1) per test.
+
+Tutorial 3 - Linear Regression part 2
+
+What linear regression is
+
+Tutorial 4 - Saving Models and Plotting Data.
+
+-Using Pickle module in Python to save our models
+
+-Saving our model - no point saving our model as it runs in under a second.
+-We dont want to  re-run our model every single time
+-The IO does work on pickle file.
+
+Tutorial 5 & 6 - KNN Part 1 & 2 - Irregular Data
+
+-KNN is used for classifying data sets
+-sklearn preprocessing can be used for converting strings to integers to give it weighting
+-KNN finds magnitude of K nearest points to classify an object.
+-Done by euclidian distance, absolute distance from A -> B d = sqrt((x2-x1)^2 + (y2-y1)^2 + (n2-n1)^2)#
+-Standard stuff ^
+-K too high, might get some misclassifications.
+-Even numbers are a nightmare
+-K value has to be set to an appropriate level for the size of the dataset.
+
+---Limitations to the algorithm----
+Working out d of every data point to every other data point is HEAVY.
+Cant really save model as predictions require recomputation of input data to predict.
+Therefore, useless to try and pre-train. Linear Time
+O(nd) to compute distance to all examples
+O(nk) to find K closest examples
+Total: O(nd+nk)
+
+Tutorial 7 - Python implementation of KNN
+https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html
+
+Tutorial 8 - Using Sklearn datasets
+
+- SVM is another classification tool, much like KNN.
+- Explanation of Support Vector Machines -> https://scikit-learn.org/stable/modules/svm.html
+
+
+Tutorial 9 - How SVMs work - guide
+
+-Works on creating hyperplanes to divide up your data using something thats straight. A linear way to divide
+your data.
+-Paramaters of a hyperplane. Hyperplane can be something like the closest points of different classes to the
+hyperplane being equal.
+
+How do we pick which hyperplane is the best though? hundreds can be drawn from a single distribution.
+-Hyperplane with the largest distances for the two closest points of different class.
+-Parralel lines drawn from those two closest points with the hyperplane form the "MARGIN"
+-Increasing this margin is the key to finding correct classifications ---04:15 in the video- perfect expl--
+-Increase the class distinction zone by maximising margin between class points to the SUPPORT VECTOR.
+
+- For more mixed data where linear hyperplanes doesnt work on the surface, we require KERNELS.
+- These kernels transform the data and allow us to draw these hyperplanes.
+- Usually drags the data from 2d to 3d using f(x1,x2) = x3, adding another point
+- This 3rd dimension allows us to generate a hyperplane of 2d space.
+- This dimension adding continues to be iterated on until a meaningful plane can be generated.
+--------------------------------------------------------------------------
+ QUESTION - HOW DO YOU KNOW WHAT KERNEL WILL RETURN MEANINGFUL RESULTS OR IS IT TRIAL AND ERROR.
+--------------------------------------------------------------------------
+-Adding a 'soft margin' paramater to the model, allows for n number of points to lie inside the margin and
+not be used as the class-nodes for our support vectors.
+
+https://scikit-learn.org/stable/modules/svm.html#kernel-functions
+https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
+Input parameters to the svm.SVC Classifier -> kernel, linear, poly, rbf
+                                           -> C = soft margin number
+
+Tutorial 11 - Unsupervised Model - K Means Clustering.
+
+Unsupervised learning in that we dont have to give it our labels.
+
+K is how many clusters - Each cluster gets a centroid
+
+A centroid is arbitrarily drawn and then an iterative approach classifys points within the centroid,
+    works out a new centroid. Perpendicular line is drawn between centroids and points reclassified.
+    New centroids are then drawn and the process continues until no change in classification is seen.
+    https://www.youtube.com/watch?v=g1Zbuk1gAfk - 3:18 for video
+
+-disadvantages - for every point in our data set, it has to iteratively calculate distance to every centroid.
+        data points * k_value * iterations * n_features
+        Can be alot faster than other clustering algorithms to be fair.
+
+Model for handwritten numbers can be found - https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_digits.html#sphx-glr-auto-examples-cluster-plot-kmeans-digits-py
+
+Tutorial 12 - Implementing K Means Clustering
+
+View KM_Clustering.py for details
+
+
